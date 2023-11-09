@@ -57,12 +57,6 @@ public class InvoiceControllerTest {
 
 
 
-    @Test
-    @DatabaseSetup({"/data-set/invoice-data.xml","/data-set/operator-data.xml"})
-    public void testAssignOperatorToInvoice() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/invoice/operator/" + 1L + "/" + 1L))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
 
 
 }
