@@ -14,6 +14,11 @@ pipeline {
                     sh 'mvn test'
                 }
             }
+            post{
+                        always{
+                        junit '**/target/surefire-reports/TEST-*.xml'
+                        }
+                        }
 
         }
         stage('build') {
