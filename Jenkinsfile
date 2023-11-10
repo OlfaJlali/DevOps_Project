@@ -37,6 +37,14 @@ pipeline {
 
              }
         }
+        stage('Deploy to Nexus') {
+            steps {
+                script {
+                    // Maven deploy to Nexus
+                    sh 'mvn deploy'
+                }
+            }
+        }
         stage('build') {
             steps {
                 sh 'mvn package'
