@@ -1,6 +1,9 @@
 pipeline {
 
     agent any
+
+    tools { nodejs '21.1.0'}
+
     stages {
         stage('Checkout Backend Repo') {
             steps {
@@ -39,8 +42,18 @@ pipeline {
                 sh 'mvn package'
             }
         }
-
-
-
+         stage('Build Frontend') {
+            agent any
+                 steps {
+                 // Checkout the Angular frontend repository
+                 git branch: 'main',
+                 url: 'https://github.com/olfa213/DevOps_Project_Front.git'
+                 sh 'npm install -g @angular/cli'
+                 sh 'npm install'
+                 sh 'ng build --configuration=production'
+                 }
+         }
     }
- }
+
+
+}
