@@ -57,7 +57,7 @@ pipeline {
                  git branch: 'main',
                  url: 'https://github.com/olfa213/DevOps_Project_Front.git'
                  sh'rm -rf node_modules'
-                 sh'npm cache clean --force'
+                 sh'npm install'
                  sh 'npm install -g @angular/cli'
                  sh 'ng build --configuration=production'
             }
