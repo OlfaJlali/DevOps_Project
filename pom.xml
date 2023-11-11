@@ -173,6 +173,7 @@
         </pluginManagement>
         <finalName>spring-boot-docker</finalName>
     </build>
+    <!-- Deploy to Nexus -->
     <distributionManagement>
         <repository>
             <id>deploymentRepo</id>
