@@ -58,11 +58,8 @@ pipeline {
                  url: 'https://github.com/HaithemGhattass/DevOpsFrontend.git'
                 sh'rm -rf node_modules'
                 sh'npm install'
-                sh'npm install -g npm@latest'
                 sh'npm cache clean --force'
-
                  sh 'npm install -g @angular/cli'
-                sh 'npm install'
                  sh 'ng build --configuration=production'
                  }
          }
