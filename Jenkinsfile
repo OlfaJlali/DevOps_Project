@@ -56,8 +56,9 @@ pipeline {
                  // Checkout the Angular frontend repository
                  git branch: 'main',
                  url: 'https://github.com/olfa213/DevOps_Project_Front.git'
+
                  sh 'npm install -g @angular/cli'
-                 sh 'npm install'
+             //    sh 'npm install'
                  sh 'ng build --configuration=production'
                  }
          }
