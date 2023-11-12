@@ -69,7 +69,7 @@ pipeline {
         stage('Push beckend image to Hub'){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'mdpdocker', variable: 'dockermdp')]) {
+                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockermdp')]) {
                     sh 'docker login -u olfajlali -p ${dockermdp}'
                     }
                     sh 'docker push olfajlali/spring-boot-docker'
