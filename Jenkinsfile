@@ -81,14 +81,14 @@ pipeline {
                 // Checkout the Angular frontend repository
                 git branch: 'main',
                 url: 'https://github.com/olfa213/DevOps_Project_Front.git'
-                sh'rm -rf node_modules'
-                sh'npm install'
+                sh 'rm -rf node_modules'
+                sh 'npm install'
                 sh 'npm install -g @angular/cli'
                 sh 'ng build --configuration=production'
-                sh 'docker build -t haithem2301/angular-app -f Dockerfile .'
-                withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                sh 'docker login -u haithem2301 -p ${dockerhubpwd}'
-                sh 'docker push haithem2301/angular-app'
+                sh 'docker build -t olfajlali/angular-app -f Dockerfile .'
+                withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockermdp')]) {
+                sh 'docker login -u olfajlali -p ${dockermdp}'
+                sh 'docker push olfajlali/angular-app'
                 }
             }
         }
