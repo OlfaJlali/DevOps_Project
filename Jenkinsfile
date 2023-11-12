@@ -50,6 +50,25 @@ pipeline {
                 sh 'mvn package'
             }
         }
+             stage('Build docker image'){
+                                steps{
+                                    script{
+                                        sh 'docker build -t olfajlali/spring-boot-docker .'
+                                    }
+                                }
+                            }
+
+                                                                            stage('Push beckend image to Hub'){
+                                                                                steps{
+                                                                                    script{
+                                                                                       withCredentials([string(credentialsId: 'mdpdocker', variable: 'dockermdp')]) {
+                                                                                       sh 'docker login -u olfajlali -p ${dockermdp}'
+
+                                                                    }
+                                                                                       sh 'docker push olfajlali/spring-boot-docker'
+                                                                                    }
+                                                                                }
+                                                                            }
          stage('Build Frontend') {
             agent any
                  steps {
@@ -62,6 +81,8 @@ pipeline {
                  sh 'ng build --configuration=production'
             }
          }
+
+
     }
 
 
