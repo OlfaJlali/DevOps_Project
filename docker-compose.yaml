@@ -1,0 +1,27 @@
+version: "3"
+services:
+  springboot-app:
+    container_name: spring-boot-docker
+    image: haithem2301/spring-boot-docker:latest
+    restart: unless-stopped
+    ports:
+      - "8082:8082"
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_PORT: 3306
+    networks:
+      - dev-net
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    volumes:
+      - ./my-datavolume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: devops
+      MYSQL_ROOT_PASSWORD: root
+networks:
+  dev-net:
