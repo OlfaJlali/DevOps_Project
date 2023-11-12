@@ -37,6 +37,14 @@ pipeline {
 
              }
         }
+          stage('SonarQube Analysis') {
+                                     steps {
+                                         withSonarQubeEnv(installationName:'sql') {
+                                         sh 'chmod +x ./mvnw'
+                                             sh 'mvn package sonar:sonar'
+                                         }
+                                     }
+                                 }
         stage('Deploy to Nexus') {
             steps {
                 script {
