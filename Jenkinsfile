@@ -37,14 +37,14 @@ pipeline {
 
              }
         }
-          stage('SonarQube Analysis') {
-                                     steps {
-                                         withSonarQubeEnv(installationName:'sql') {
-                                         sh 'chmod +x ./mvnw'
-                                             sh 'mvn package sonar:sonar'
-                                         }
-                                     }
-                                 }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv(installationName:'sql') {
+                    sh 'chmod +x ./mvnw'
+                    sh 'mvn package sonar:sonar'
+                }
+            }
+        }
         stage('Deploy to Nexus') {
             steps {
                 script {
@@ -65,7 +65,6 @@ pipeline {
                 }
             }
         }
-
         stage('Push beckend image to Hub'){
             steps{
                 script{
@@ -86,10 +85,20 @@ pipeline {
                 sh'npm install'
                 sh 'npm install -g @angular/cli'
                 sh 'ng build --configuration=production'
+                sh 'docker build -t haithem2301/angular-app -f Dockerfile .'
+                withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                sh 'docker login -u haithem2301 -p ${dockerhubpwd}'
+                sh 'docker push haithem2301/angular-app'
+                }
             }
         }
-
-
+        stage('docker-compose full stack app'){
+            steps{
+                script{
+                    sh 'docker compose up --build -d'
+                }
+            }
+        }
     }
 
 
