@@ -86,9 +86,11 @@ pipeline {
                 sh 'npm install -g @angular/cli'
                 sh 'ng build --configuration=production'
                 sh 'docker build -t olfajlali/angular-app -f Dockerfile .'
+                /*
                 withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockermdp')]) {
                 sh 'docker login -u olfajlali -p ${dockermdp}'
                 sh 'docker push olfajlali/angular-app'
+                */
                 }
             }
         }
