@@ -107,6 +107,19 @@ pipeline {
                    }
             }
     }
+     post {
+                success {
+                    emailext subject: 'Jenkins Pipeline Success',
+                              body: 'The Jenkins pipeline has succeeded :) . Build URL: ${BUILD_URL}',
+                              to: '$DEFAULT_RECIPIENTS'
+                }
+
+                failure {
+                    emailext subject: 'Jenkins Pipeline Failure',
+                              body: 'The Jenkins pipeline has failed :c . Build URL: ${BUILD_URL}',
+                              to: '$DEFAULT_RECIPIENTS'
+                }
+            }
 
 
 }
