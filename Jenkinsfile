@@ -90,8 +90,9 @@ pipeline {
                 withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockermdp')]) {
                 sh 'docker login -u olfajlali -p ${dockermdp}'
                 sh 'docker push olfajlali/angular-app'
-                */
+
                 }
+                */
             }
         }
         stage('Deploy fullstack app'){
