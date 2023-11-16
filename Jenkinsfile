@@ -92,13 +92,20 @@ pipeline {
                 }
             }
         }
-        stage('docker-compose full stack app'){
-            steps{
-                script{
-                    sh 'docker compose up --build -d'
-                }
+        stage('Deploy fullstack app'){
+             steps{
+                 script{
+                     sh 'docker compose -f docker-compose-app.yaml up --build -d'
+                        }
+                 }
             }
-        }
+       stage('Deploy Prometheus & Graphana'){
+               steps{
+                   script{
+                       sh 'docker compose  -f docker-compose-prometheus.yaml -f docker-compose-grafana.yaml up --build -d'
+                           }
+                   }
+            }
     }
 
 
