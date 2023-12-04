@@ -21,8 +21,6 @@ mvn clean install
 #### 3-Review code quality in SonarQube.
 #### 4-Deploy the application using Docker and Nexus.
 #### 5-Monitor application metrics in Grafana.
-#### 6-Features
-#### 7-Spring Boot Backend:
 
 ## Features
 The core of the project is a robust backend application developed with the Spring Boot framework, providing a scalable and efficient foundation.
